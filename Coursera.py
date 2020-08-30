@@ -42,10 +42,10 @@ def gsBasis4(A):
     B[:, 3] = B[:, 3] - B[:, 3] @ B[:, 1] * B[:, 1]
     B[:, 3] = B[:, 3] - B[:, 3] @ B[:, 2] * B[:, 2]
     # Now normalise if possible
-    if la.norm(B[:, 2]) > verySmallNumber:
-        B[:, 2] = B[:, 2] / la.norm(B[:, 2])
+    if la.norm(B[:, 3]) > verySmallNumber:
+        B[:, 3] = B[:, 3] / la.norm(B[:, 3])
     else:
-        B[:, 2] = np.zeros_like(B[:, 2])
+        B[:, 3] = np.zeros_like(B[:, 3])
     # Finally, we return the result:
     return B
 
@@ -62,7 +62,7 @@ def gsBasis(A):
             # Complete the code to subtract the overlap with previous vectors.
             # you'll need the current vector B[:, i] and a previous vector B[:, j]
             B[:, i] = B[:, i] - B[:, i] @ B[:, j] * B[:, j]
-        if la.norm(B[:, 2]) > verySmallNumber:
+        if la.norm(B[:, i]) > verySmallNumber:
             B[:, i] = B[:, i] / la.norm(B[:, i])
         else:
             B[:, i] = np.zeros_like(B[:, i])
